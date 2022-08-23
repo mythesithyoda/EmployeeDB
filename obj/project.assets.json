@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/runner/EmployeeDB/main.csproj",
-      "projectName": "main",
-      "projectPath": "/home/runner/EmployeeDB/main.csproj",
+      "projectUniqueName": "/home/runner/EmployeeDB/EmployeeDB.csproj",
+      "projectName": "EmployeeDB",
+      "projectPath": "/home/runner/EmployeeDB/EmployeeDB.csproj",
       "packagesPath": "/home/runner/.nuget/packages/",
       "outputPath": "/home/runner/EmployeeDB/obj/",
       "projectStyle": "PackageReference",

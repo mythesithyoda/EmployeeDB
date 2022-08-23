@@ -1,0 +1,15 @@
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/EmployeeDB
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/EmployeeDB.deps.json
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/EmployeeDB.runtimeconfig.json
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/EmployeeDB.dll
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/ref/EmployeeDB.dll
+/home/runner/EmployeeDB/bin/Debug/netcoreapp6.0/EmployeeDB.pdb
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.csproj.AssemblyReference.cache
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.AssemblyInfoInputs.cache
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.AssemblyInfo.cs
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.csproj.CoreCompileInputs.cache
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.dll
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/ref/EmployeeDB.dll
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.pdb
+/home/runner/EmployeeDB/obj/Debug/netcoreapp6.0/EmployeeDB.genruntimeconfig.cache

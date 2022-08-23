@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SCxdwxOnRg5E/ouUWKIuECuEvMNVYEOxRtRLUEEui6p0XY/NY3tIEuiDOGbC421yiqyj+oe85Q0BfkghSVdFdA==",
+  "dgSpecHash": "Dr5/7E2hQjVowx7pqC8q0QHGE+RUeLGBOV+LmOtz0pxBt74ZRodCyJWIilS/SeOMrgEWYh/WwDqyE+ryzQ7AJQ==",
   "success": true,
-  "projectFilePath": "/home/runner/EmployeeDB/main.csproj",
+  "projectFilePath": "/home/runner/EmployeeDB/EmployeeDB.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
