@@ -1,107 +1,89 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+/*
+x 1. Async Enumerable for data get methods
+x 2. Switch Expression in lambda
+x 3. Inferred type for lambda
+x 4. Null safety every where(NotNullAttribute, ull coalesce/assignment, object notation)
+x 5. Record types
+x 6. Pattern matching/deconstruction when possible
+x 7. file declared namespace
+x 8. global using
+x 9. top level expressions
+10. init only properties
+x 11. lambda attributes
+12. 
+*/
 
-namespace EmployeeDB
+
+//Get All Employees
+await foreach (var employee in GetEmployees())
 {
-    public class Program
+    var myLambda = [EmployeeDB.My] (EmployeeDB.Project project) =>
+        project switch
+        {
+            (ProjectCode: "LTACAPEX") => 0.6f,
+            (ProjectCode: "GLTOPEX") => 0.4f,
+            (ProjectCode: "ASDFEX") => 0.0f,
+            (_) => 0.0f,
+        };
+    
+    Console.WriteLine($"{employee.FirstName} {employee.MiddleName} {employee.LastName} {employee.Suffix}");
+    //Display the records for each employee
+    await foreach (var (code, recordList) in GetRecords(employee.INumber, 14, myLambda))
     {
-        public static async Task<List<Employee>> GetEmployees()
+        Console.Write($"{code.ProjectCode} ");
+        foreach (var record in recordList)
         {
-            List<Employee> es = new List<Employee>();
-            for (int i = 0; i < 5; ++i)
+            if (record is {Hours: var h})
             {
-                //Pretend this is a network call, or DB, or something long running
-                es.Add(new Employee("i12345", "", "David", "Farrington", i.ToString()));
-                await Task.Delay(10);
+              Console.Write($"{h} ");
             }
-
-            return es;
-        }
-
-        public static async Task<Dictionary<string, List<TimeRecord>>> GetRecords(string inumber, int pastDays, Func<Project, float> getProjectCodeSplit)
-        {
-            List<Project> codes = new List<Project>() {
-              new Project() { ProjectCode = "LTACAPEX" },
-                new Project() { ProjectCode = "GLTOPEX" },
-                  new Project() { ProjectCode = "ASDFEX" }
-            };
-
-            Dictionary<string, List<TimeRecord>> records = new Dictionary<string, List<TimeRecord>>();
-            for (int i = 0; i < pastDays; ++i)
+            else
             {
-                var date = DateTime.Now.Subtract(TimeSpan.FromDays(i));
-
-                foreach (var code in codes)
-                {
-                    float percent = getProjectCodeSplit(code);
-                    if (!records.ContainsKey(code.ProjectCode))
-                    {
-                        records[code.ProjectCode] = new List<TimeRecord>();
-                    }
-
-                    //Simulate some unentered time
-                    if (i > 10)
-                    {
-                        records[code.ProjectCode].Add(null);
-                        continue;
-                    }
-                    //Pretend this is a network call, or DB, or something long running
-                    records[code.ProjectCode].Add(new TimeRecord() { Date = date, Hours = 8 * percent, Project = code });
-                    await Task.Delay(10);
-                }
+                Console.Write("{} ");
             }
-
-            return records;
         }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
 
-        public static async Task Main(string[] args)
-        {
-            //Get All Employees
-            var employees = await GetEmployees();
-            //Get Time Records for each employee
-            foreach (var employee in employees)
-            {
-                Func<Project, float> myLambda = (Project project) =>
-                {
-                    switch (project.ProjectCode)
-                    {
-                        case "LTACAPEX":
-                            return 0.6f;
-                        case "GLTOPEX":
-                            return 0.4f;
-                        case "ASDFEX":
-                            return 0.0f;
-                    }
-                    return 0.0f;
-                };
-                var dictionary = await GetRecords(employee.INumber, 14, myLambda);
-                Console.WriteLine($"{employee.FirstName} {employee.MiddleName} {employee.LastName} {employee.Suffix}");
-                //Display the records for each employee
-                foreach (var codegroup in dictionary)
-                {
-                    Console.Write($"{codegroup.Key} ");
-                    foreach (var record in codegroup.Value)
-                    {
-                        if (record == null)
-                        {
-                            Console.Write("{} ");
-                        }
-                        else
-                        {
-                            Console.Write($"{record.Hours} ");
-                        }
-
-                    }
-                    Console.WriteLine();
-                }
-                Console.WriteLine();
-            }
-
-            //TODO: Summarize statistics
-            Console.WriteLine($"Is equal when null? {new Employee("", "", "", "", "").Equals(null)}");
-        }
+static async IAsyncEnumerable<Employee> GetEmployees()
+{
+    for (int i = 0; i < 5; ++i)
+    {
+        //Pretend this is a network call, or DB, or something long running
+        await Task.Delay(10);
+        yield return new Employee("i12345", "", "David", "Farrington", i.ToString());
     }
 }
 
+static async IAsyncEnumerable<(Project, List<TimeRecord?>)> GetRecords(string inumber, int pastDays, Func<Project, float> getProjectCodeSplit)
+{
+    var codes = new List<Project> {
+                new (ProjectCode: "LTACAPEX"),
+                new (ProjectCode: "GLTOPEX"),
+                new (ProjectCode: "ASDFEX"),
+            };
+
+    foreach (var code in codes)
+    {
+        List <TimeRecord?> records = new();
+        for (int i = 0; i < pastDays; ++i)
+        {
+            var date = DateTime.Now.Subtract(TimeSpan.FromDays(i));
+
+            float percent = getProjectCodeSplit(code);
+            
+            //Simulate some unentered time
+            if (i > 10)
+            {
+                records.Add(null);
+                continue;
+            }
+            //Pretend this is a network call, or DB, or something long running
+            records.Add(new TimeRecord(date, 8 * percent, code));
+            await Task.Delay(10);
+        }     
+      yield return (code, records);
+    }
+}

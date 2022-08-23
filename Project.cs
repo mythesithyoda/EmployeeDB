@@ -1,7 +1,3 @@
-namespace EmployeeDB
-{
-    public class Project
-    {
-        public string ProjectCode { get; set; }
-    }
-}
+namespace EmployeeDB;
+
+public record class Project(string ProjectCode);

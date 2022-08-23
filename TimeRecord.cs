@@ -1,11 +1,3 @@
-using System;
+namespace EmployeeDB;
 
-namespace EmployeeDB
-{
-    public class TimeRecord
-    {
-        public DateTime Date { get; set; }
-        public float Hours { get; set; }
-        public Project Project { get; set; }
-    }
-}
+public record class TimeRecord(DateTime Date, float Hours, Project Project);
