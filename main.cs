@@ -20,7 +20,7 @@ namespace EmployeeDB
             return es;
         }
 
-        public static async Task<Dictionary<string, List<TimeRecord>>> GetRecords(string inumber, int pastDays)
+        public static async Task<Dictionary<string, List<TimeRecord>>> GetRecords(string inumber, int pastDays, Func<Project, float> getProjectCodeSplit)
         {
             List<Project> codes = new List<Project>() {
               new Project() { ProjectCode = "LTACAPEX" },
@@ -35,6 +35,7 @@ namespace EmployeeDB
 
                 foreach (var code in codes)
                 {
+                    float percent = getProjectCodeSplit(code);
                     if (!records.ContainsKey(code.ProjectCode))
                     {
                         records[code.ProjectCode] = new List<TimeRecord>();
@@ -47,7 +48,7 @@ namespace EmployeeDB
                         continue;
                     }
                     //Pretend this is a network call, or DB, or something long running
-                    records[code.ProjectCode].Add(new TimeRecord() { Date = date, Hours = 8, Project = code });
+                    records[code.ProjectCode].Add(new TimeRecord() { Date = date, Hours = 8 * percent, Project = code });
                     await Task.Delay(10);
                 }
             }
@@ -62,7 +63,20 @@ namespace EmployeeDB
             //Get Time Records for each employee
             foreach (var employee in employees)
             {
-                var dictionary = await GetRecords(employee.INumber, 14);
+                Func<Project, float> myLambda = (Project project) =>
+                {
+                    switch (project.ProjectCode)
+                    {
+                        case "LTACAPEX":
+                            return 0.6f;
+                        case "GLTOPEX":
+                            return 0.4f;
+                        case "ASDFEX":
+                            return 0.0f;
+                    }
+                    return 0.0f;
+                };
+                var dictionary = await GetRecords(employee.INumber, 14, myLambda);
                 Console.WriteLine($"{employee.FirstName} {employee.MiddleName} {employee.LastName} {employee.Suffix}");
                 //Display the records for each employee
                 foreach (var codegroup in dictionary)
@@ -86,7 +100,8 @@ namespace EmployeeDB
             }
 
             //TODO: Summarize statistics
-
+            Console.WriteLine($"Is equal when null? {new Employee("", "", "", "", "").Equals(null)}");
         }
     }
 }
+
