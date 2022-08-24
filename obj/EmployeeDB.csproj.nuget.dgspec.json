@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/runner/EmployeeDB/EmployeeDB.csproj": {}
+    "/home/runner/DarkorchidCorruptTranslation/EmployeeDB.csproj": {}
   },
   "projects": {
-    "/home/runner/EmployeeDB/EmployeeDB.csproj": {
+    "/home/runner/DarkorchidCorruptTranslation/EmployeeDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/runner/EmployeeDB/EmployeeDB.csproj",
+        "projectUniqueName": "/home/runner/DarkorchidCorruptTranslation/EmployeeDB.csproj",
         "projectName": "EmployeeDB",
-        "projectPath": "/home/runner/EmployeeDB/EmployeeDB.csproj",
+        "projectPath": "/home/runner/DarkorchidCorruptTranslation/EmployeeDB.csproj",
         "packagesPath": "/home/runner/.nuget/packages/",
-        "outputPath": "/home/runner/EmployeeDB/obj/",
+        "outputPath": "/home/runner/DarkorchidCorruptTranslation/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/runner/.nuget/NuGet/NuGet.Config"
