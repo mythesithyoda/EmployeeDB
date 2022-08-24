@@ -1,3 +1,3 @@
 namespace EmployeeDB;
 
-public record class Project(string ProjectCode);
+public record struct Project(string ProjectCode);
