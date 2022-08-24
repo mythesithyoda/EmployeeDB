@@ -1,16 +1,25 @@
 /*
-x 1. Async Enumerable for data get methods
-x 2. Switch Expression in lambda
-x 3. Inferred type for lambda
+null safety - Art
 x 4. Null safety every where(NotNullAttribute, null coalesce/assignment, object notation)
-x 5. Record types
-x 6. Pattern matching/deconstruction when possible
+
+extra stuff - Krista
 x 7. file declared namespace
 x 8. global using
 x 9. top level expressions
-10. init only properties
-x 11. lambda attributes
-12. 
+
+records - Dan Burton
+x 5. Record types
+x 10. init only properties
+x 12. with statements
+
+async - Ben
+x 1. Async Enumerable for data get methods
+
+lambda - David F.
+x 2. Switch Expression in lambda
+x 3. Inferred type for lambda
+x 6. Pattern matching/deconstruction when possible
+x 11. lambda attributes 
 */
 
 //Get All Employees
